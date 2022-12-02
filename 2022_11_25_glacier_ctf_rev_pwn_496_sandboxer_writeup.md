@@ -3,6 +3,7 @@
 ## Event Details
 
 https://ctf.glacierctf.com/
+
 https://ctftime.org/event/1803
 
 ### Team Played With
@@ -164,7 +165,7 @@ $ base64 -w 0 shellcode > payload
 3) Base64 decode and decrypt using aes ecb with the key `0xcac70947580d12ecf428594f087de550`
 4) Xor with `0xc157553f73a73501e19c9509f873aca9bb695bc2e3700a2ec92c0231bbca390c`
 5) Recover user steve's plaintext password `H$g7FAKVR8f3&k!@wmMd6Vdk3rHSUrwg`
-6) Use `steve:H$g7FAKVR8f3&k!@wmMd6Vdk3rHSUrwg` to upload a elf which seeks to the start of any open file descriptor, other than stdin/stdout/stderr, and dumps the contents
+6) Use `steve:H$g7FAKVR8f3&k!@wmMd6Vdk3rHSUrwg` to upload an elf which seeks to the start of any open file descriptor, other than stdin/stdout/stderr, and dumps the contents
 7) Recover the encrypted base64 encoded password for admin `3cW6609oe6bhKvnI1tPrGD77pivtx3So4uAgahNEKeQ=`
 8) Recover admin's plaintext password as above `glacierctf{Ju57_P0s1X_th1ng5}` which is the flag
 
@@ -173,7 +174,7 @@ from Crypto.Cipher import AES
 import struct
 import base64
 
-def crack( password ):
+def crack(password):
     key = struct.pack("<QQ", 0xcac70947580d12ec, 0xf428594f087de550)
     aes = AES.new(key, AES.MODE_ECB)
     m = aes.decrypt(base64.b64decode(password))
